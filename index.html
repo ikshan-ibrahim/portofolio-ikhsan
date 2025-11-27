@@ -1,0 +1,165 @@
+<!doctype html>
+<html lang="id">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <title>Home - ikhsan</title>
+  <script src="https://cdn.tailwindcss.com"></script>
+
+  <!-- Animasi Popup -->
+  <style>
+    @keyframes fadeIn {
+      from { opacity: 0; transform: scale(0.9); }
+      to { opacity: 1; transform: scale(1); }
+    }
+    .animate-fadeIn {
+      animation: fadeIn 0.25s ease-out;
+    }
+  </style>
+</head>
+
+<body class="bg-gray-100 text-gray-900">
+
+  <!-- NAVBAR -->
+  <nav class="bg-gradient-to-r from-indigo-600 to-sky-500 text-white p-4">
+    <div class="container mx-auto flex items-center justify-between">
+      <a href="index.html" class="font-semibold">ikhsan maulana ibrahim</a>
+      <div class="space-x-4">
+        <a href="index.html" class="hover:underline">Home</a>
+        <a href="about.html" class="hover:underline">About</a>
+        <a href="projects.html" class="hover:underline">Projects</a>
+        <a href="gallery.html" class="hover:underline">Gallery</a>
+        <a href="cv.html" class="hover:underline">CV</a>
+
+        
+      </div>
+    </div>
+  </nav>
+
+  <!-- MAIN -->
+  <main class="container mx-auto p-6">
+
+    <!-- HEADER PROFILE -->
+    <header class="flex flex-col md:flex-row items-center gap-6">
+      <img src="assets/profile.jpg" alt="profil" class="w-40 h-40 rounded-lg object-cover shadow-lg">
+      <div>
+        <h1 class="text-2xl font-bold">ikhsan maulana ibrahim</h1>
+        <p class="text-gray-700 mt-2">Mahasiswa — Web Developer pemula. Fokus: full-stack & LARAVEL.</p>
+        <div class="mt-4">
+          <a href="projects.html" class="inline-block bg-indigo-600 text-white px-4 py-2 rounded-md">Lihat Proyek</a>
+          <a href="about.html" class="inline-block ml-2 bg-sky-500 text-white px-4 py-2 rounded-md">Tentang Saya</a>
+        </div>
+      </div>
+    </header>
+
+    <!-- CONTENT -->
+    <section class="mt-8 grid md:grid-cols-2 gap-6">
+
+      <!-- SKILL TABLE -->
+      <div class="bg-white p-6 rounded-lg shadow">
+        <h2 class="font-semibold text-lg">Skill & Tabel</h2>
+        <table class="w-full mt-4">
+          <thead><tr class="text-left"><th>Skill</th><th>Level</th></tr></thead>
+          <tbody>
+            <tr><td>HTML</td><td>Advanced</td></tr>
+            <tr><td>CSS</td><td>Advanced</td></tr>
+            <tr><td>LARAVEL</td><td>Intermediate</td></tr>
+          </tbody>
+        </table>
+      </div>
+
+      <!-- CONTACT FORM + POPUP -->
+      <div class="bg-white p-6 rounded-lg shadow">
+        <h2 class="font-semibold text-lg">Kontak</h2>
+
+        <!-- FORM BARU -->
+        <form id="contactForm" class="space-y-3 mt-3">
+
+          <input 
+            name="name" 
+            id="name"
+            required 
+            placeholder="Nama" 
+            class="w-full p-2 border rounded" />
+
+          <input 
+            name="email" 
+            id="email"
+            type="email" 
+            required 
+            placeholder="email@contoh.com" 
+            class="w-full p-2 border rounded" />
+
+          <textarea 
+            name="message"
+            id="message"
+            required 
+            placeholder="Pesan..." 
+            class="w-full p-2 border rounded"></textarea>
+
+          <button class="bg-indigo-600 text-white px-4 py-2 rounded">
+            Kirim
+          </button>
+
+        </form>
+
+      </div>
+    </section>
+
+  </main>
+
+  <!-- POPUP -->
+  <div id="successPopup" class="hidden fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center">
+    <div class="bg-white p-6 rounded-lg shadow-lg max-w-sm w-full text-center animate-fadeIn">
+
+      <h2 class="text-lg font-semibold text-green-600">Berhasil!</h2>
+      <p class="mt-2 text-gray-700">Pesan Anda berhasil dikirim.</p>
+
+      <button onclick="closePopup()" class="mt-4 px-4 py-2 bg-indigo-600 text-white rounded">
+        Tutup
+      </button>
+
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="text-center text-sm text-gray-600 py-6">
+    &copy; 2025 ikhsan maulana ibrahim — Portofolio Tugas Pemrograman Web
+  </footer>
+
+  <!-- JAVASCRIPT -->
+  <script>
+    async function sendEmail(data) {
+      await fetch("https://formsubmit.co/ajax/last.ibrahim123@gmail.com", {
+        method: "POST",
+        headers: { 
+          "Content-Type": "application/json",
+          "Accept": "application/json"
+        },
+        body: JSON.stringify(data)
+      });
+    }
+
+    document.getElementById("contactForm").addEventListener("submit", async function(e) {
+      e.preventDefault();
+
+      const data = {
+        name: document.getElementById("name").value,
+        email: document.getElementById("email").value,
+        message: document.getElementById("message").value
+      };
+
+      await sendEmail(data);
+
+      e.target.reset();
+
+      document.getElementById("successPopup").classList.remove("hidden");
+    });
+
+    function closePopup() {
+      document.getElementById("successPopup").classList.add("hidden");
+    }
+  </script>
+
+</body>
+</html>
