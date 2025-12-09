@@ -1,6 +1,6 @@
-# Portofolio Sabta - Versi Lengkap
+# Portofolio ikhsan - Versi Lengkap
 
-Project ini berisi multi-page responsive website menggunakan Tailwind CDN.
+Project ini berisi multi-page responsive website menggunakan css dan js.
 
 Files:
 - index.html, about.html, projects.html, gallery.html
